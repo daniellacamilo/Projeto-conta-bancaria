@@ -1,7 +1,7 @@
 import readlinesync = require("readline-sync");
-import { colors } from '../src/util/Colors';
-import { Conta } from '../menu/Conta';
-import { Input } from "../src/util/Input";
+import { colors } from './src/util/Colors';
+import { Conta } from './src/model/Conta';
+import { Input } from "./src/util/Input";
 
 export function main() {
 
