@@ -1,112 +1,117 @@
-import rls  from "readline-sync";
-import {colors} from "./src/util/Colors";
-rls.setDefaultOptions({encoding:"utf8"})
+import readlinesync = require("readline-sync");
+import { colors } from '../src/util/Colors';
+import { Conta } from '../menu/Conta';
+import { Input } from "../src/util/Input";
 
+export function main() {
 
-export function main(){
     let opcao: number;
-    
 
-    const menu =`
-${"*".repeat(60)}
-${" ".repeat(60)}
-           BANCO DO BRAZIL COM Z                            
-${" ".repeat(60)}
-${"*".repeat(60)}
-${" ".repeat(60)}
-            1 - Criar Conta                                 
-            2 - Listar todas as Contas                      
-            3 - Buscar Conta por Numero                     
-            4 - Atualizar dados da Conta                    
-            5 - Apagar Conta                                
-            6 - Sacar                                       
-            7 - Depositar                                   
-            8 - Transferir valores entre Contas             
-            9 - Buscar Conta por Titular                    
-            0 - Sair                                        
-${" ".repeat(60)}
-${"*".repeat(60)}
-`;
+    // Objeto da Classe Conta (Teste)
+    const conta: Conta = new Conta(1, 123, 1, "Adriana", 10000);
+    conta.visualizar();
+    conta.sacar(10500);
+    conta.visualizar();
+    conta.depositar(5000);
+    conta.visualizar();
 
-  
+    while (true) {
 
-    while(true){
-        console.log( colors.bg.black,colors.fg.yellow);
-        console.log( menu);
-        console.log( colors.reset);
+        console.log(colors.bg.black, colors.fg.yellow, 
+                    "*****************************************************");
+        console.log("                                                     ");
+        console.log("                BANCO DO BRAZIL COM Z                ");
+        console.log("                                                     ");
+        console.log("*****************************************************");
+        console.log("                                                     ");
+        console.log("            1 - Criar Conta                          ");
+        console.log("            2 - Listar todas as Contas               ");
+        console.log("            3 - Buscar Conta por Numero              ");
+        console.log("            4 - Atualizar Dados da Conta             ");
+        console.log("            5 - Apagar Conta                         ");
+        console.log("            6 - Sacar                                ");
+        console.log("            7 - Depositar                            ");
+        console.log("            8 - Transferir valores entre Contas      ");
+        console.log("            9 - Sair                                 ");
+        console.log("                                                     ");
+        console.log("*****************************************************");
+        console.log("                                                     ", 
+        colors.reset);
 
-        process.stdout.write("Digite uma opção: ");
-        opcao = rls.questionInt("");
+        console.log("Entre com a opção desejada: ");
+        opcao = Input.questionInt("");
 
-        if(opcao === 0){
-            console.log("\nBanco do Brazil com Z - O seu Futuro começa aqui!");
+        if (opcao === 0) {
+            console.log(colors.fg.greenstrong, "\nBanco do Brazil com Z - O seu Futuro começa aqui!");
             sobre();
+            console.log(colors.reset, "");
             process.exit(0);
         }
 
         switch (opcao) {
-            case 1: console.log(colors.fg.whitestrong, `\nCriar Conta\n`,colors.reset);
-                keyPress();
+            case 1:
+                console.log(colors.fg.whitestrong, "\n\nCriar Conta\n\n", colors.reset);
+                
+                keyPress()
                 break;
-            case 2: console.log(colors.fg.whitestrong, `\nListar todas as Contas\n`,colors.reset);
-                keyPress();
+            case 2:
+                console.log(colors.fg.whitestrong, "\n\nListar todas as Contas\n\n", colors.reset);
+
+                keyPress()
                 break;
-            case 3: console.log(colors.fg.whitestrong, `\nBuscar Conta por Numero\n`,colors.reset);
-                keyPress();
+            case 3:
+                console.log(colors.fg.whitestrong, "\n\nConsultar dados da Conta - por número\n\n", colors.reset);
+
+                keyPress()
                 break;
-            case 4: console.log(colors.fg.whitestrong, `\nAtualizar dados da Conta\n`,colors.reset);
-                keyPress();
+            case 4:
+                console.log(colors.fg.whitestrong, "\n\nAtualizar dados da Conta\n\n", colors.reset);
+
+                keyPress()
                 break;
-            case 5: console.log(colors.fg.whitestrong, `\nApagar Conta\n`,colors.reset);
-                keyPress();
+            case 5:
+                console.log(colors.fg.whitestrong, "\n\nApagar uma Conta\n\n", colors.reset);
+
+                keyPress()
                 break;
-            case 6: console.log(colors.fg.whitestrong, `\nSacar\n`,colors.reset);
-                keyPress();
+            case 6:
+                console.log(colors.fg.whitestrong, "\n\nSaque\n\n", colors.reset);
+
+                keyPress()
                 break;
-            case 7: console.log(colors.fg.whitestrong, `\nDepositar\n`,colors.reset);
-                keyPress();
+            case 7:
+                console.log(colors.fg.whitestrong, "\n\nDepósito\n\n", colors.reset);
+
+                keyPress()
                 break;
-            case 8: console.log(colors.fg.whitestrong, `\nTransferir valores entre Contas\n`,colors.reset);
-                keyPress();
+            case 8:
+                console.log(colors.fg.whitestrong, "\n\nTransferência entre Contas\n\n", colors.reset);
+
+                keyPress()
                 break;
-            case 9: console.log(colors.fg.whitestrong, `\nBuscar Conta por Titular\n`,colors.reset);
-                keyPress();
-                break;
-        
             default:
-                console.log(colors.fg.whitestrong, `\nOpcao invalida! \n`,colors.reset);
-                keyPress();
+                console.log(colors.fg.whitestrong, "\nOpção Inválida!\n", colors.reset);
+
+                keyPress()
                 break;
         }
     }
 
 }
 
-
-
+/* Função com os dados da pessoa desenvolvedora */
 function sobre(): void {
-    console.log(
-        `
-         ${"*".repeat(40)}
-           Projeto desenvolvido por: 
-           Ericky Santana - eriicky@live.com
-           github.com/erickystn
-         ${"*".repeat(40)}        
-        `)
+    console.log("\n*****************************************************");
+    console.log("Projeto Desenvolvido por: github.com/daniellacamilo");
+    console.log("Generation Brasil - generation@generation.org");
+    console.log("github.com/conteudoGeneration");
+    console.log("*****************************************************");
 }
 
 function keyPress(): void {
     console.log(colors.reset, "");
     console.log("\nPressione enter para continuar...");
-    rls.prompt();
+    readlinesync.prompt();
 }
 
-
 main();
-
-// const conta: Conta = new Conta(1, 123, 1, "Adriana", 10000);
-    // conta.visualizar();
-    // conta.sacar(10500);
-    // conta.visualizar();
-    // conta.depositar(5000);
-    // conta.visualizar();
