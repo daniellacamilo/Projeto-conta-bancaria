@@ -1,20 +1,29 @@
 import readlinesync = require("readline-sync");
 import { colors } from './src/util/Colors';
-import { Conta } from './src/model/Conta';
+import { ContaCorrente } from './src/model/ContaCorrente';
+import { ContaPoupanca } from './src/model/ContaPoupanca';
 import { Input } from "./src/util/Input";
 
 export function main() {
 
     let opcao: number;
 
-    // Objeto da Classe Conta (Teste)
-    const conta: Conta = new Conta(1, 123, 1, "Adriana", 10000);
-    conta.visualizar();
-    conta.sacar(10500);
-    conta.visualizar();
-    conta.depositar(5000);
-    conta.visualizar();
+        // Objeto da Classe ContaCorrente (Teste)
+    const contacorrente: ContaCorrente = new ContaCorrente(2, 123, 1, "Mariana", 15000, 1000);
+    contacorrente.visualizar();
+    contacorrente.sacar(2000);
+    contacorrente.visualizar();
+    contacorrente.depositar(1000);
+    contacorrente.visualizar();
 
+    // Objeto da Classe ContaPoupanca (teste)
+    const contapoupanca: ContaPoupanca = new ContaPoupanca(3, 123, 2, "Victor", 1000, 10);
+    contapoupanca.visualizar();
+    contapoupanca.sacar(200);
+    contapoupanca.visualizar();
+    contapoupanca.depositar(1000);
+    contapoupanca.visualizar();
+    
     while (true) {
 
         console.log(colors.bg.black, colors.fg.yellow, 
@@ -108,6 +117,7 @@ function sobre(): void {
     console.log("*****************************************************");
 }
 
+/* Função de pausa entre as opções do menu */
 function keyPress(): void {
     console.log(colors.reset, "");
     console.log("\nPressione enter para continuar...");
