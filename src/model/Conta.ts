@@ -1,11 +1,15 @@
+import { colors } from "../util/Colors";
+import { formatarMoeda } from "../util/Currency";
 export abstract class Conta {
 
+     // Atributos da Classe
     private _numero: number;
     private _agencia: number;
     private _tipo: number;
     private _titular: string;
     private _saldo: number;
 
+    // Método Construtor
     constructor(numero: number, agencia: number, tipo: number, titular: string, saldo: number) {
         this._numero = numero;
         this._agencia = agencia;
@@ -14,75 +18,89 @@ export abstract class Conta {
         this._saldo = saldo;
     }
 
-    public get numero() {
+     // Métodos getters e setters
+    public get numero(): number {
         return this._numero;
     }
 
-    public set numero(numero: number) {
-        this._numero = numero;
-    }
-
-    public get agencia() {
+    public get agencia(): number {
         return this._agencia;
     }
 
-    public set agencia(agencia: number) {
-        this._agencia = agencia;
-    }
-
-    public get tipo() {
-        return this._tipo;
-    }
-
-    public set tipo(tipo: number) {
-        this._tipo = tipo;
-    }
-
-    public get titular() {
+    public get titular(): string {
         return this._titular;
     }
 
-    public set titular(titular: string) {
-        this._titular = titular;
+    public get tipo(): number {
+        return this._tipo;
     }
 
-    public get saldo() {
+    public get saldo(): number {
         return this._saldo;
     }
 
-    public set saldo(saldo: number) {
-        this._saldo = saldo;
+    public set numero(value: number) {
+        this._numero = value;
     }
 
-    public sacar(valor: number): boolean {
+    public set agencia(value: number) {
+        this._agencia = value;
+    }
 
-        if (this._saldo < valor) {
-            console.log("\n Saldo Insuficiente!");
+    public set titular(value: string) {
+        this._titular = value;
+    }
+
+    public set tipo(value: number) {
+        this._tipo = value;
+    }
+
+    public set saldo(value: number) {
+        this._saldo = value;
+    }
+
+    //Métodos Auxiliares
+
+      public sacar(valor: number): boolean {
+
+        if(valor <= 0){
+            console.log(colors.fg.red, "\nO valor deve ser positivo", colors.reset);
             return false;
         }
 
-        this._saldo = this._saldo - valor;
+        if(valor > this._saldo){
+            console.log(colors.fg.red, "\nSaldo Insuficiente!", colors.reset);
+            return false;
+        }
+
+        this._saldo -= valor;
         return true;
     }
 
     public depositar(valor: number): void {
-        this._saldo = this._saldo + valor;
+
+        if(valor <= 0)
+            console.log(colors.fg.red, "O valor deve ser positivo", colors.reset);
+        else
+            this._saldo += valor;
     }
 
     public visualizar(): void {
 
-        let tipo: string = "";
+        let tipo: string;
 
-        switch (this._tipo) {
+        switch(this._tipo){
             case 1:
                 tipo = "Conta Corrente";
-                break;
+            break;
             case 2:
                 tipo = "Conta Poupança";
-                break;
+            break;
+            default:
+                tipo = "Tipo Inválido";
         }
 
-        console.log("\n\n*****************************************************");
+        console.log("\n*****************************************************");
         console.log("Dados da Conta:");
         console.log("*****************************************************");
         console.log("Numero da Conta: " + this._numero);
