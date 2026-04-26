@@ -361,9 +361,9 @@ function procurarPorTitular(): void {
 // Função com os dados da pessoa desenvolvedora
 export function sobreProjeto(): void {
     console.log("\n**************************************************");
-    console.log(colors.fg.blue, "Projeto desenvolvido por Jeaninny Teixeira");
-    console.log(" jeaninny.teixeira@gmail.com");
-    console.log(" github.com/Jeaninny", colors.reset, "");
+    console.log(colors.fg.blue, "Projeto desenvolvido por Daniella Camilo");
+    console.log(" daniella.camilos@gmail.com");
+    console.log(" github.com/daniellacamilo", colors.reset, "");
     console.log("**************************************************");
 }
 
